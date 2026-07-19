@@ -1,0 +1,27 @@
+{
+  "plugins": [
+    {
+      "id": "turbo",
+      "name": "鍋烽€?,
+      "name_i18n": {
+        "zh-CN": "鍋烽€?,
+        "en": "Turbo",
+        "ja": "銈裤兗銉?,
+        "ko": "韯半炒"
+      },
+      "version": "1.0.0",
+      "author": "QuoVadis8",
+      "description": "鎸変綇鎸佺画鍒囨崲姝﹀櫒锛堟墜鏌?閿洏锛夛紝鏉惧紑鍋滄",
+      "desc_i18n": {
+        "zh-CN": "鎸変綇鎸佺画鍒囨崲姝﹀櫒锛堟墜鏌?閿洏锛夛紝鏉惧紑鍋滄",
+        "en": "Hold to cycle weapons (gamepad/keyboard), release to stop",
+        "ja": "鎶笺仐缍氥亼銇︽鍣ㄥ垏銈婃浛銇堬紙銈层兗銉犮儜銉冦儔/銈兗銉溿兗銉夛級銆侀洟銇椼仸鍋滄",
+        "ko": "雸勲ゴ瓿?鞛堨溂氅?氍搓赴 鞝勴櫂 (瓴岇瀯韺摐/韨る炒霌?, 雴撿溂氅?欷戩"
+      },
+      "category": "combat",
+      "size_kb": 38,
+      "emoji": "馃殌",
+      "download_url": "https://github.com/QuoVadis86/EasyGTA-Plugins/releases/download/v1.0.0/turbo.dll"
+    }
+  ]
+}

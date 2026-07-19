@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>12</LangVersion>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.256" />
+  </ItemGroup>
+  <!-- 寮曠敤 EasyGTA.Core 鎺ュ彛锛堜粠 SDK 鎴栨湰鍦扮紪璇戝悗鐨?exe 鑾峰彇锛?-->
+  <ItemGroup>
+    <Reference Include="EasyGTA.Core">
+      <HintPath>..\..\lib\EasyGTA.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

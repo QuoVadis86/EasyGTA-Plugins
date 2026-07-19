@@ -1,0 +1,51 @@
+name: Validate Plugin PR
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/**'
+      - 'manifest.json'
+
+jobs:
+  validate:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET Framework
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Validate manifest.json
+        shell: pwsh
+        run: |
+          $manifest = Get-Content manifest.json -Raw | ConvertFrom-Json
+          if (-not $manifest.plugins) {
+            Write-Error "manifest.json: plugins 瀛楁缂哄け"
+            exit 1
+          }
+          foreach ($p in $manifest.plugins) {
+            Write-Host "楠岃瘉: $($p.id) ($($p.name))"
+            if (-not $p.id) { Write-Error "鎻掍欢缂哄皯 id"; exit 1 }
+            if (-not $p.name) { Write-Error "鎻掍欢缂哄皯 name"; exit 1 }
+            if (-not $p.version) { Write-Error "鎻掍欢缂哄皯 version"; exit 1 }
+            if (-not $p.download_url) { Write-Error "鎻掍欢缂哄皯 download_url"; exit 1 }
+            if (-not $p.category) { Write-Error "鎻掍欢缂哄皯 category"; exit 1 }
+          }
+          Write-Host "鉁?manifest.json 楠岃瘉閫氳繃"
+
+      - name: Check plugin DLLs exist
+        shell: pwsh
+        run: |
+          $pluginDirs = Get-ChildItem plugins -Directory
+          foreach ($dir in $pluginDirs) {
+            $dllPath = Join-Path $dir.FullName "$($dir.Name).dll"
+            if (-not (Test-Path $dllPath)) {
+              Write-Warning "鈿?鏈壘鍒版彃浠?DLL: $dllPath锛堝鏋滃皻鏈紪璇戝彲蹇界暐锛?
+            } else {
+              Write-Host "鉁?$($dir.Name).dll 瀛樺湪 ($((Get-Item $dllPath).Length / 1KB) KB)"
+            }
+          }
